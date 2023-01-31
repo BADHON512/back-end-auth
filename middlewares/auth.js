@@ -9,4 +9,12 @@ export const isAthenticated = (req,res,next)=>{
     return next(new ErrorHandler("NOt LOGGED IN",401))
    }next()
 }
-ErrorHandler
+
+export const authorizeAdmin= (req,res,next)=>{
+
+    
+
+   if(req.user.role !== "admin"){
+    return next(new ErrorHandler("Only admin Allowed",401))
+   }next()
+}
