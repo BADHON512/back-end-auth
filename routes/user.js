@@ -12,8 +12,12 @@ router.get("/googlelogin",passport.authenticate("google",{
 router.get(
   "/login",
   passport.authenticate("google", {
-    successRedirect: process.env.FRONTEND_URL
+      failureRedirect: '/login'
+    
   })
+   function(req, res) {
+    res.redirect(process.env.FRONTEND_URL);
+  }  
 );
 
 router.get('/me',isAthenticated,myProfile)
