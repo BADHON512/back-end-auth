@@ -15,7 +15,7 @@ router.get(
       failureRedirect: '/login'
     
   })
-   function(req, res) {
+   ,(req, res)=> {
     res.redirect(process.env.FRONTEND_URL)
   }  
 );
