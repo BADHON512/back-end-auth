@@ -12,7 +12,10 @@ export const myProfile= (req,res, nex)=>{
 export const logout= (req,res,next)=>{
     req.session.destroy((err)=>{
         if(err)return next(err)
-        res.clearCookie("connect.sid");
+        res.clearCookie("connect.sid",{
+         secure:process.env.NODE_ENV==="Development"?false:true,
+        httpOnly:process.env.NODE_ENV==="Development"?false:true,
+        sameSite:process.env.NODE_ENV==="Development"?false:"none"});
         res.status(200).json({
             message:"LOGGED OUT"
         })
